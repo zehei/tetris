@@ -2,7 +2,7 @@ function getDeviceWidth() { return document.body.clientWidth/16; }
 
 function createGameWindow() {
 	var gameWindow = document.createElement("div");
-	marginLeft = (getDeviceWidth() - GAME_WINDOW_WIDTH)/2;
+	var marginLeft = (getDeviceWidth() - GAME_WINDOW_WIDTH*CUBE_LENGTH)/2;
 	gameWindow.setAttribute("id", "gameWindow");
 	var width = GAME_WINDOW_WIDTH*CUBE_LENGTH;
 	var height = GAME_WINDOW_HEIGHT*CUBE_LENGTH;
@@ -12,8 +12,29 @@ function createGameWindow() {
 		"padding:" + "0.15em;" +
 		"margin-top:" + "2em;" +
 		"margin-left:" + marginLeft + "em;");
+	console.log("GAME WINDOW CREATED");
 	document.body.appendChild(gameWindow);
 	return gameWindow;
+}
+
+function createScoreboard() {
+	var scoreboard = document.createElement("div");
+	var marginLeft = (getDeviceWidth() - SCOREBOARD_WIDTH*CUBE_LENGTH)/2;
+	var marginTop = 2.5;
+	scoreboard.setAttribute("id", "scoreboard");
+	var width = SCOREBOARD_WIDTH*CUBE_LENGTH;
+	var height = SCOREBOARD_HEIGHT*CUBE_LENGTH;
+	scoreboard.setAttribute("style", 
+		"width:" + width + "em;" +
+		"height:" + height + "em;" +
+		"padding:" + "0.15em;" +
+		"margin-top:" + marginTop + "em;" +
+		"margin-left:" + marginLeft + "em;" + 
+		"line-height:" + height + "em;");
+	document.body.appendChild(scoreboard);
+	scoreboard.appendChild(TEXT_NODE);
+	console.log("SCOREBOARD CREATED");
+	return scoreboard;
 }
 
 function createTetrisCube(gameWindow, tetrisCubeType) {
@@ -25,7 +46,7 @@ function createTetrisCube(gameWindow, tetrisCubeType) {
 	return tetrisCube;
 }
 
-function getCoord(em){
+function getCoord(em) {
 	return Math.round((em - GAME_WINDOW_PADDING)/(CUBE_LENGTH))
 }
 

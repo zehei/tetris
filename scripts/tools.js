@@ -35,14 +35,14 @@ function center(cubes) {
 	return getPosition(tetrisCube[closestIndex]);
 }
 
-function addArray(arr1, arr2){
+function addArray(arr1, arr2) {
 	for (var i = arr2.length - 1; i >= 0; i--) {
 		arr1.push(arr2[i])
 	}
 	return arr1;
 }
 
-function subArray(arr1, arr2){
+function subArray(arr1, arr2) {
 	for (var i = arr1.length - 1; i >= 0; i--) {
 		if (arr2.indexOf(arr1[i]) != -1){
 			arr1.splice(i, 1);

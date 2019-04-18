@@ -1,13 +1,13 @@
-function gameOver(freezedCubes){
+function gameOver(freezedCubes) {
 	var bool = false;
 	for (var i = freezedCubes.length - 1; i >= 0; i--) {
 		coordY = getPosition(freezedCubes[i])[1];
-		if (coordY < 0){ bool = true; }
+		if (coordY < CUBE_LENGTH*2){ bool = true; }
 	}
 	return bool;
 }
 
-function deleteCubes(gameWindow, freezedCubes, deletedCubes){
+function deleteCubes(gameWindow, freezedCubes, deletedCubes) {
 	for (var i = deletedCubes.length - 1; i >= 0; i--) {
 		deletedCoord = getPosition(deletedCubes[i]);
 		for (var j = freezedCubes.length - 1; j >= 0; j--) {
@@ -20,8 +20,8 @@ function deleteCubes(gameWindow, freezedCubes, deletedCubes){
 	}
 }
 
-function checkFullCubesRow(cubes){
-	for (var i = GAME_WINDOW_HEIGHT; i >= 0; i--){
+function checkFullCubesRow(cubes) {
+	for (var i = GAME_WINDOW_HEIGHT; i >= 0; i--) {
 		for (var j = cubes.length - 1; j >= 0; j--) {
 			getCoord(getPosition(cubes[j]))
 		}
@@ -29,7 +29,7 @@ function checkFullCubesRow(cubes){
 	}
 }
 
-function countNumberOfCubesPerRow(cubes){
+function countNumberOfCubesPerRow(cubes) {
 	var numberOfCubesPerRow = new Array(GAME_WINDOW_HEIGHT).fill(0);
 
 	for (var i = cubes.length - 1; i >= 0; i--) {
@@ -41,7 +41,7 @@ function countNumberOfCubesPerRow(cubes){
 	return numberOfCubesPerRow;
 }
 
-function getCoordOfFullRow(cubes){
+function getCoordOfFullRow(cubes) {
 	var numberOfCubesPerRow = countNumberOfCubesPerRow(cubes);
 	var coordOfFullRow = new Array()
 	for (var i = numberOfCubesPerRow.length - 1; i >= 0; i--) {
@@ -52,7 +52,7 @@ function getCoordOfFullRow(cubes){
 	return coordOfFullRow;
 }
 
-function getFullRowList(cubes){
+function getFullRowList(cubes) {
 	coordOfFullRow = getCoordOfFullRow(cubes);
 	var fullRowList = new Array();
 	for (var i = coordOfFullRow.length - 1; i >= 0; i--) {
