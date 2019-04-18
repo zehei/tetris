@@ -29,10 +29,14 @@ function registerCollideListener(tetrisCube) {
 		//the tetris-cube will be "freezed" and absorbed by the existing freezed cubes list.
 		FREEZED_CUBES = addArray(FREEZED_CUBES, tetrisCube);
 		//if there is one row full of freezed cubes, it will be eliminated.
-		var fullCubesRow = getFullCubesRow(FREEZED_CUBES);
-		if (fullCubesRow.length != 0) {
-			FREEZED_CUBES = subArray(FREEZED_CUBES, fullCubesRow);
-			deleteCubes(GAME_WINDOW, FREEZED_CUBES, fullCubesRow);
+		var fullRowList = getFullRowList(FREEZED_CUBES);
+		console.log("FULL_ROW_LIST: ", fullRowList);
+		if (fullRowList.length != 0) {
+			for (var i = fullRowList.length - 1; i >= 0; i--) {
+				var fullRow = fullRowList[i];
+				FREEZED_CUBES = subArray(FREEZED_CUBES, fullRow);
+				deleteCubes(GAME_WINDOW, FREEZED_CUBES, fullRow);
+			}
 		}
 		COLLIDE_GROUND = false;
 		startNewRound();
