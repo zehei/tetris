@@ -69,3 +69,15 @@ document.onkeydown = function() {
 		move(tetrisCube, FREEZED_CUBES, direction);
 	}	
 };
+
+var touch=function(e){
+	var x=e.touches[0].pageX;
+	var y=e.touches[0].pageY;
+	if (x < window.innerWidth/3) { direction = "left"; }
+	else if (x > window.innerWidth/3*2) { direction = "right"; }
+	else if (y > window.innerHeight/2) { direction = "down"; }
+	else { direction = "rotate";}
+	move(tetrisCube, FREEZED_CUBES, direction);
+};
+
+document.addEventListener("touchstart", touch);
